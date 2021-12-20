@@ -2,7 +2,7 @@ const currencyService = require('../services/currencyService')
 
 const getAvailableCurrencies = {
     method: 'GET',
-    path: '/currency',
+    path: '/currencies',
     handler: async (request, h) => {
         return currencyService.getAvailableCurrencies()
             .catch(err => {
