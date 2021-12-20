@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "@hapi/hapi": "^20.2.1",
+    "axios": "^0.24.0",
     "dotenv": "^10.0.0",
     "migrate-mongo": "^8.2.3",
     "mongoose": "^6.1.2",
