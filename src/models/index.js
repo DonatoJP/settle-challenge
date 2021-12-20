@@ -12,7 +12,7 @@ const ratesSchema = mongoose.Schema({
     originalRate: Number,
     feePercentage: Number,
     feeAmount: Number,
-    totalFee: Number
+    totalRate: Number
 })
 
 const Rate = db.model('Rate', ratesSchema, 'Rates')

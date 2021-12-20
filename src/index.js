@@ -17,7 +17,10 @@ const init = async () => {
     server.ext('onRequest', requestLogging);
 
     server.route(healthController.healthEndpoint);
+
     server.route(ratesController.getRates);
+    server.route(ratesController.createRates);
+
     server.route(currencyController.getAvailableCurrencies);
 
     await server.start();

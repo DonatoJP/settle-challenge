@@ -12,7 +12,7 @@ module.exports = {
         originalRate: 1.123993,
         feePercentage: 10.0,
         feeAmount: 0.1123993,
-        totalFee: 1.2363923,
+        totalRate: 1.2363923,
       },
       {
         _id: '2',
@@ -21,7 +21,7 @@ module.exports = {
         originalRate: 115.297815,
         feePercentage: 25.0,
         feeAmount: 28.82445375,
-        totalFee: 144.12226875,
+        totalRate: 144.12226875,
       }
     ])
   },
