@@ -3,10 +3,10 @@ version: "3.8"
 services:
   app:
     build: 
-      context: ./src
+      context: ./src/back-app
       dockerfile: Dockerfile
     volumes:
-      - ./src/migrations:/usr/app/src/migrations
+      - ./src/back-app/migrations:/usr/app/migrations
     ports:
       - 3000:3000
     

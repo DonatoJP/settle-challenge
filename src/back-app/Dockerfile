@@ -5,9 +5,8 @@ WORKDIR /usr/app
 COPY package.json yarn.lock ./
 RUN yarn
 
-COPY . ./src
-COPY .env .
+COPY . .
 
 EXPOSE 3000
 
-ENTRYPOINT [ "node", "src/index.js" ]
+ENTRYPOINT [ "node", "index.js" ]

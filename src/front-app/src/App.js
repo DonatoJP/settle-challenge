@@ -1,5 +1,6 @@
 import './App.css';
-import RatesTable from './components/selfmade/RatesTable';
+// import RatesTable from './components/selfmade/RatesTable';
+import { default as RatesTable } from './components/mui/RatesTable';
 
 function App() {
   return (
