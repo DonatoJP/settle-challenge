@@ -7,6 +7,7 @@
     "@hapi/hapi": "^20.2.1",
     "dotenv": "^10.0.0",
     "migrate-mongo": "^8.2.3",
+    "mongoose": "^6.1.2",
     "winston": "^3.3.3"
   }
 }

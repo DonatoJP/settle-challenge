@@ -6,6 +6,7 @@ COPY package.json yarn.lock ./
 RUN yarn
 
 COPY . ./src
+COPY .env .
 
 EXPOSE 3000
 

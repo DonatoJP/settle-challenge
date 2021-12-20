@@ -4,6 +4,7 @@ const Hapi = require('@hapi/hapi');
 const { requestLogging } = require('./utils/ioLogging');
 
 const healthController = require('./controllers/healthController');
+const ratesController = require('./controllers/ratesController');
 
 const init = async () => {
 
@@ -13,7 +14,9 @@ const init = async () => {
     });
 
     server.ext('onRequest', requestLogging);
+
     server.route(healthController.healthEndpoint);
+    server.route(ratesController.getRates);
 
     await server.start();
     console.log('Server running on %s', server.info.uri);

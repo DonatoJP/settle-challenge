@@ -5,6 +5,8 @@ services:
     build: 
       context: ./src
       dockerfile: Dockerfile
+    volumes:
+      - ./src/migrations:/usr/app/src/migrations
     ports:
       - 3000:3000
     
