@@ -16,8 +16,36 @@ const getRates = async () => {
         })
 }
 
+const getOriginalRateBetween = async (from, to) => {
+    return axiosClient
+        .get(`http://localhost:3000/rates/originalRates?from=${from}&to=${to}`)
+        .then(response => {
+            if (response.status === 200) {
+                return (JSON.parse(response.data)).originalRate
+            } else if (response.status === 404) {
+                return null
+            }
+
+            throw Error('Invalid input')
+        })
+}
+
+const getAvailableCurrencies = async () => {
+    return axiosClient
+        .get('http://localhost:3000/currencies')
+        .then(response => {
+            if (response.status === 200) {
+                return (JSON.parse(response.data))
+            }
+
+            return []
+        })
+}
+
 const availableMethods = {
-    getRates
+    getRates,
+    getOriginalRateBetween,
+    getAvailableCurrencies
 }
 
 export default availableMethods;
