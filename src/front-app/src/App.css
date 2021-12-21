@@ -37,14 +37,12 @@
   }
 }
 
-.MuiTable-root {
-  width: 80vw;
-  height: auto;
+.root-square {
+  width: 85vw;
 }
 
 table {
   color: black;
-  width: 80vw;
   height: auto;
 }
   

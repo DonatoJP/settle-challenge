@@ -45,9 +45,43 @@ export default function CustomizedTables() {
         setHasData(true)
     }, [])
 
-  return (
-    <TableContainer sx={{ width: '80vw' }} component={Paper}>
-      <Table aria-label="customized table">
+    function getTableBody() {
+        if (data.length === 0) {
+            return (
+              <TableBody sx={{textAlign: 'center'}}>
+                <StyledTableCell align="center">{'\u2757'} Sorry, no data to show</StyledTableCell>
+              </TableBody>
+            )
+        }
+        return (
+            <TableBody>
+              {data.map((d) => (
+                <StyledTableRow key={d._id}>
+                    <StyledTableCell component="th" scope="row">
+                        {d.from.symbol}
+                    </StyledTableCell>
+                    <StyledTableCell align="right">{d.to.symbol}</StyledTableCell>
+                    <StyledTableCell align="right">{d.feePercentage}</StyledTableCell>
+                    <StyledTableCell align="right">{d.feeAmount}</StyledTableCell>
+                    <StyledTableCell align="right">{d.totalRate}</StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+        )
+    }
+
+    function getTableHead() {
+      if (data.length === 0) {
+        return (
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="center">Settle Challenge</StyledTableCell>
+            </TableRow>
+          </TableHead>
+        )
+      }
+
+      return (
         <TableHead>
           <TableRow>
             <StyledTableCell>From</StyledTableCell>
@@ -57,19 +91,14 @@ export default function CustomizedTables() {
             <StyledTableCell align="right">Total</StyledTableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          {data.map((d) => (
-            <StyledTableRow key={d._id}>
-              <StyledTableCell component="th" scope="row">
-                {d.from.symbol}
-              </StyledTableCell>
-              <StyledTableCell align="right">{d.to.symbol}</StyledTableCell>
-              <StyledTableCell align="right">{d.feePercentage}</StyledTableCell>
-              <StyledTableCell align="right">{d.feeAmount}</StyledTableCell>
-              <StyledTableCell align="right">{d.totalRate}</StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
+      )
+    }
+
+  return (
+    <TableContainer component={Paper}>
+      <Table aria-label="customized table">        
+          {getTableHead()}
+          {getTableBody()}
       </Table>
     </TableContainer>
   );
