@@ -27,7 +27,12 @@ const newRate = async (rateDTO) => {
     return Rate.create(newRate);
 }
 
+const getOriginalRateBetween = async (from, to) => {
+    return FixerIo.getRateBetween(from, to)
+}
+
 module.exports = {
     getRates,
-    newRate
+    newRate,
+    getOriginalRateBetween
 }

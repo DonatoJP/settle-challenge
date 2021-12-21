@@ -23,6 +23,7 @@ const init = async () => {
 
     server.route(ratesController.getRates);
     server.route(ratesController.createRates);
+    server.route(ratesController.getOriginalRatesBetween);
 
     server.route(currencyController.getAvailableCurrencies);
 
