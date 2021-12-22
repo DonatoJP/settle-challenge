@@ -26,6 +26,8 @@ export default function ModalContent(props) {
     const [feePercentage, setFeePercentage] = React.useState({feePercentage: null})
     const [originalRate, setOriginalRate] = React.useState(0.0)
     const [currData, serCurrData] = React.useState(null)
+    const [enableButton, setEnableButton] = React.useState(false)
+    const [errorMessage, setErrorMessage] = React.useState('')
 
     function handleChangeToFrom (key, newValue) {
         const newData = Object.assign({}, fromToData)
@@ -39,9 +41,26 @@ export default function ModalContent(props) {
         setFeePercentage(newData)
     }
 
+    function handleCreateButtonClick () {
+        backendService
+            .createRate(fromToData.from, fromToData.to, feePercentage.feePercentage)
+            .then(result => {
+                console.log(result)
+                if (!result.success) {
+                    setErrorMessage(result.message)
+                    setTimeout(() => setErrorMessage(''), 3000)
+                } else {
+                    setFromToData({from: null, to: null})
+                    setFeePercentage({feePercentage: null})
+                    setOriginalRate(0.0)
+                    setEnableButton(false)
+                    console.log('OK')
+                    props.handleClose()
+                }
+            })
+    }
+
     React.useEffect(() => {
-        console.log('Data', fromToData)
-        console.log('FeePercentage', feePercentage)
         async function fetchOriginalRate() {
             const origRate = await backendService.getOriginalRateBetween(fromToData.from, fromToData.to)
             return origRate
@@ -65,8 +84,11 @@ export default function ModalContent(props) {
             } catch (error) {
                 console.log(error)
             }
+            setEnableButton(true)
+        } else {
+            setEnableButton(false)
         }
-    }, [fromToData, feePercentage])
+    }, [fromToData])
 
     return (
         <Modal
@@ -103,7 +125,10 @@ export default function ModalContent(props) {
                             dataKey='feePercentage'
                             handleChange={handleChangeFeePercentage}
                             originalRate={originalRate}
+                            handleCreateButtonClick={handleCreateButtonClick}
+                            enableButton={enableButton}
                         />
+                        <div>{errorMessage}</div>
                 </Box>
             </Fade>
         </Modal>

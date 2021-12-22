@@ -4,6 +4,10 @@ const axiosClient = new Axios({
     timeout: 120 * 1000
 })
 
+const headers = {
+    'Content-Type': 'application/json'
+}
+
 const getRates = async () => {
     return axiosClient
         .get("http://localhost:3000/rates")
@@ -42,10 +46,25 @@ const getAvailableCurrencies = async () => {
         })
 }
 
+const createRate = async (from, to, feePercentage) => {
+    const dataToSend = {from, to, feePercentage}
+    console.log(dataToSend)
+    return axiosClient
+        .post('http://localhost:3000/rates', JSON.stringify(dataToSend), { headers })
+        .then(response => {
+            if (response.status !== 201) {
+                return {success: false, message: JSON.parse(response.data).message}
+            }
+
+            return {success: true, message: 'Rate successfully created!'}
+        })
+}
+
 const availableMethods = {
     getRates,
     getOriginalRateBetween,
-    getAvailableCurrencies
+    getAvailableCurrencies,
+    createRate
 }
 
 export default availableMethods;

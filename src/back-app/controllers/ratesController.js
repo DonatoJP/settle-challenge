@@ -51,7 +51,13 @@ const createRates = {
     method: 'POST',
     path: '/rates',
     handler: async (request, h) => {
-        return ratesService.newRate(request.payload);
+        return ratesService
+            .newRate(request.payload)
+            .then(rate => {
+                return h.response(rate).code(201)
+            }).catch(err => {
+                return h.response({error: true, message: err.message}).code(400)
+            });
     },
     options: {
         validate: {

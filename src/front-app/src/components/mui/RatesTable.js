@@ -30,20 +30,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function CustomizedTables() {
-
-    const [data, setData] = React.useState([]);
-    const [hasData, setHasData] = React.useState(false);
-
-    React.useEffect(async () => {
-        if (hasData) {
-            return
-        }
-
-        const dataFromBack = await backendService.getRates()
-        setData(dataFromBack)
-        setHasData(true)
-    }, [])
+export default function CustomizedTables(props) {
+    const data = props.data
 
     function getTableBody() {
         if (data.length === 0) {

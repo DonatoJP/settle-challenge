@@ -7,12 +7,13 @@ import React from 'react';
 
 export default function ModalLine(props) {
 
+    const defaultLabel = 'Please, select currency...'
     const [value, setValue] = React.useState('');
-    const [desc, setDesc] = React.useState('Please, select currency...')
+    const [desc, setDesc] = React.useState(defaultLabel)
 
     function selfHandleChange(event) {
-        const desc = props.currenciesData.find(cd => cd.symbol === event.target.value).description
-        setDesc(desc)
+        const desc = props.currenciesData.find(cd => cd.symbol === event.target.value)?.description
+        setDesc(desc || defaultLabel)
         setValue(event.target.value)
         props.handleChange(props.dataKey, event.target.value)
     }

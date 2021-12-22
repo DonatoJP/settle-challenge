@@ -52,7 +52,7 @@ class FixerIo {
             throw Error('Invalid currency "From"')
         }
 
-        return Number((allRates.rates[currencyTo] / allRates.rates[currencyFrom]).toFixed(6))
+        return (allRates.rates[currencyTo] / allRates.rates[currencyFrom])
     }
 }
 
