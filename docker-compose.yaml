@@ -6,9 +6,19 @@ services:
       context: ./src/back-app
       dockerfile: Dockerfile
     volumes:
-      - ./src/back-app/migrations:/usr/app/migrations
+      - ./src/back-app/code:/usr/app/code
+      - ./src/back-app/index.js:/usr/app/index.js
     ports:
       - 3000:3000
+  
+  front:
+    build:
+      context: ./src/front-app
+      dockerfile: Dockerfile
+    volumes:
+      - ./src/front-app/src:/usr/app/src
+    ports:
+      - 3001:3000
     
   db:
     image: mongo

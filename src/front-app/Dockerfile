@@ -8,6 +8,5 @@ RUN yarn
 COPY . .
 
 EXPOSE 3000
-RUN chmod +x ./bin/docker-entrypoint.sh
 
-ENTRYPOINT [ "./bin/docker-entrypoint.sh" ]
+ENTRYPOINT [ "yarn", "start" ]
