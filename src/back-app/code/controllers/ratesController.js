@@ -1,5 +1,6 @@
 const ratesService = require('../services/ratesService')
 const Joi = require('joi')
+const { RateNotFound } = require('../services/errors')
 
 const ratesSchema = Joi.alternatives().try(
     Joi.object().keys({
@@ -66,8 +67,27 @@ const createRates = {
     }
 }
 
+const refreshRates = {
+    method: 'POST',
+    path: '/rates/{rateId}/refresh',
+    handler: async (request, h) => {
+        return ratesService
+            .refreshRate(request.params.rateId)
+            .then(rate => {
+                return h.response(rate).code(200)
+            }).catch(err => {
+                if (err instanceof RateNotFound) {
+                    return h.response({error: true, message: err.message}).code(404)
+                }
+
+                return h.response({error: true, message: err.message}).code(500)
+            });
+    }
+}
+
 module.exports = {
     getRates,
     createRates,
-    getOriginalRatesBetween
+    getOriginalRatesBetween,
+    refreshRates
 }

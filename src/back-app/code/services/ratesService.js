@@ -2,6 +2,7 @@ const Rate = require('../models');
 const Rates = require('../models')
 const FixerIo = require('../modules/fixerIo')
 const currencyService = require('./currencyService')
+const { RateNotFound } = require('./errors')
 
 const getRates = async () => {
     return Rates.find({});
@@ -31,8 +32,25 @@ const getOriginalRateBetween = async (from, to) => {
     return FixerIo.getRateBetween(from, to)
 }
 
+const refreshRate = async (rateId) => {
+    const rate = await Rate.findById(rateId)
+    if (!rate) {
+        throw new RateNotFound(`Rate with ID ${rateId} not found`)
+    }
+
+    const newOriginalRate = await FixerIo.getRateBetween(rate.from.symbol, rate.to.symbol)
+    const newFeeAmount = (rate.feePercentage / 100) * newOriginalRate
+    const newTotal = newFeeAmount + newOriginalRate
+
+    return Rate.findByIdAndUpdate(rateId, 
+        { feeAmount: newFeeAmount, originalRate: newOriginalRate, totalRate: newTotal },
+        { new: true }
+    )
+}
+
 module.exports = {
     getRates,
     newRate,
-    getOriginalRateBetween
+    getOriginalRateBetween,
+    refreshRate
 }

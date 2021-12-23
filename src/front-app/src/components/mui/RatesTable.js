@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import TableLine from './TableLine';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -16,16 +17,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 16,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
   },
 }));
 
@@ -43,16 +34,15 @@ export default function CustomizedTables(props) {
         return (
             <TableBody>
               {data.map((d) => (
-                <StyledTableRow key={d._id}>
-                    <StyledTableCell component="th" scope="row">
-                        {d.from.symbol}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">{d.to.symbol}</StyledTableCell>
-                    <StyledTableCell align="right">{d.originalRate}</StyledTableCell>
-                    <StyledTableCell align="right">{d.feePercentage}</StyledTableCell>
-                    <StyledTableCell align="right">{d.feeAmount}</StyledTableCell>
-                    <StyledTableCell align="right">{d.totalRate}</StyledTableCell>
-                </StyledTableRow>
+                <TableLine
+                  id={d._id}
+                  from={d.from.symbol} 
+                  to={d.to.symbol}
+                  originalRate={d.originalRate}
+                  feePercentage={d.feePercentage}
+                  feeAmount={d.feeAmount}
+                  totalRate={d.totalRate}
+                />
               ))}
             </TableBody>
         )
@@ -78,6 +68,7 @@ export default function CustomizedTables(props) {
             <StyledTableCell align="right">Fee %</StyledTableCell>
             <StyledTableCell align="right">Fee Amount</StyledTableCell>
             <StyledTableCell align="right">Total</StyledTableCell>
+            <StyledTableCell align="right">Actions</StyledTableCell>
           </TableRow>
         </TableHead>
       )
