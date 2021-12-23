@@ -45,7 +45,6 @@ export default function ModalContent(props) {
         backendService
             .createRate(fromToData.from, fromToData.to, feePercentage.feePercentage)
             .then(result => {
-                console.log(result)
                 if (!result.success) {
                     setErrorMessage(result.message)
                     setTimeout(() => setErrorMessage(''), 3000)
@@ -54,7 +53,6 @@ export default function ModalContent(props) {
                     setFeePercentage({feePercentage: null})
                     setOriginalRate(0.0)
                     setEnableButton(false)
-                    console.log('OK')
                     props.handleClose()
                 }
             })

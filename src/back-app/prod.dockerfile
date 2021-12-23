@@ -1,4 +1,5 @@
 FROM node:14
+ENV EXEC_MODE=production
 
 RUN apt-get -q update && apt-get -qy install netcat
 
