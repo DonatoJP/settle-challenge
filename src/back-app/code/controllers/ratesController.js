@@ -5,7 +5,7 @@ const ratesSchema = Joi.alternatives().try(
     Joi.object().keys({
         from: Joi.string().alphanum().min(3).max(3).required(),
         to: Joi.string().alphanum().min(3).max(3).required(),
-        feePercentage: Joi.number().min(0.0).max(100.0).required(),
+        feePercentage: Joi.number().min(0.0).required(),
     }),
     Joi.object().keys({
         from: Joi.string().alphanum().min(3).max(3).required(),

@@ -6,23 +6,53 @@ module.exports = {
     // await db.collection('albums').updateOne({artist: 'The Beatles'}, {$set: {blacklisted: true}});
     await db.collection('Rates').insertMany([
       {
-        _id: '1',
         from: { symbol: 'EUR', description: 'Euro' },
         to: { symbol: 'USD', description: 'United States Dollar' },
-        originalRate: 1.123993,
-        feePercentage: 10.0,
-        feeAmount: 0.1123993,
-        totalRate: 1.2363923,
+        originalRate: 1.133151,
+        feePercentage: 0.0,
+        feeAmount: 0.000000,
+        totalRate: 1.133151,
       },
       {
-        _id: '2',
         from: { symbol: 'EUR', description: 'Euro' },
         to: { symbol: 'ARS', description: 'Argentine Peso' },
-        originalRate: 115.297815,
-        feePercentage: 25.0,
-        feeAmount: 28.82445375,
-        totalRate: 144.12226875,
-      }
+        originalRate: 115.938860,
+        feePercentage: 0.0,
+        feeAmount: 0,
+        totalRate: 115.938860,
+      },
+      {
+        from: { symbol: 'USD', description: 'United States Dollar' },
+        to: { symbol: 'ARS', description: 'Argentine Peso' },
+        originalRate: 102.315454,
+        feePercentage: 0.0,
+        feeAmount: 0,
+        totalRate: 102.315454,
+      },
+      {
+        from: { symbol: 'EUR', description: 'Euro' },
+        to: { symbol: 'BRL', description: 'Brazilian Real' },
+        originalRate: 6.423153,
+        feePercentage: 0.0,
+        feeAmount: 0,
+        totalRate: 6.423153,
+      },
+      {
+        from: { symbol: 'USD', description: 'United States Dollar' },
+        to: { symbol: 'BRL', description: 'Brazilian Real' },
+        originalRate: 5.668439,
+        feePercentage: 0.0,
+        feeAmount: 0,
+        totalRate: 5.668439,
+      },
+      {
+        from: { symbol: 'BRL', description: 'Brazilian Real' },
+        to: { symbol: 'ARS', description: 'Argentine Peso' },
+        originalRate: 18.050147,
+        feePercentage: 0.0,
+        feeAmount: 0,
+        totalRate: 18.050147,
+      },
     ])
   },
 
@@ -30,7 +60,6 @@ module.exports = {
     // TODO write the statements to rollback your migration (if possible)
     // Example:
     // await db.collection('albums').updateOne({artist: 'The Beatles'}, {$set: {blacklisted: false}});
-    await db.collection('Rates').deleteOne({ _id: '1' })
-    await db.collection('Rates').deleteOne({ _id: '2' })
+    await db.collection('Rates').deleteMany({})
   }
 };
