@@ -1,5 +1,5 @@
 // In this file you can configure migrate-mongo
-const dbConfig = require('./config').db
+const dbConfig = require('./code/config').db
 
 const config = {
   mongodb: {
@@ -7,7 +7,7 @@ const config = {
     url: dbConfig.url || `mongodb://${dbConfig.username}:${dbConfig.password}@${dbConfig.host}:${dbConfig.port}`,
 
     // TODO Change this to your database name:
-    databaseName: "db",
+    databaseName: dbConfig.dbName,
 
     options: {
       useNewUrlParser: true, // removes a deprecation warning when connecting

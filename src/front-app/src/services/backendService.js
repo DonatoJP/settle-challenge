@@ -48,7 +48,6 @@ const getAvailableCurrencies = async () => {
 
 const createRate = async (from, to, feePercentage) => {
     const dataToSend = {from, to, feePercentage}
-    console.log(dataToSend)
     return axiosClient
         .post('http://localhost:3000/rates', JSON.stringify(dataToSend), { headers })
         .then(response => {

@@ -4,7 +4,7 @@ services:
   app:
     build: 
       context: ./src/back-app
-      dockerfile: dev.dockerfile
+      dockerfile: prod.dockerfile
     volumes:
       - "./src/back-app/code:/usr/app/code"
       - "./src/back-app/index.js:/usr/app/index.js"
@@ -15,12 +15,9 @@ services:
   front:
     build:
       context: ./src/front-app
-      dockerfile: dev.dockerfile
-    volumes:
-      - ./src/front-app/src:/usr/app/src
-    entrypoint: ["./bin/wait-for-service.sh", "app:3000"]
+      dockerfile: prod.dockerfile
     ports:
-      - 3001:3000
+      - 80:80
     
   db:
     image: mongo
@@ -31,6 +28,6 @@ services:
       - 27017:27017
     volumes:
       - mongodb-data:/data/db
-
+    
 volumes:
   mongodb-data:

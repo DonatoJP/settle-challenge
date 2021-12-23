@@ -3,7 +3,7 @@ const dbConfig = require('../config').db
 
 const db = mongoose.createConnection(
     dbConfig.url,
-    { dbName: 'db' }
+    { dbName: dbConfig.dbName }
 )
 
 const ratesSchema = mongoose.Schema({

@@ -1,11 +1,11 @@
 'use strict';
 
 const Hapi = require('@hapi/hapi');
-const { requestLogging } = require('./utils/ioLogging');
+const { requestLogging } = require('./code/utils/ioLogging');
 
-const healthController = require('./controllers/healthController');
-const ratesController = require('./controllers/ratesController');
-const currencyController = require('./controllers/currencyController');
+const healthController = require('./code/controllers/healthController');
+const ratesController = require('./code/controllers/ratesController');
+const currencyController = require('./code/controllers/currencyController');
 
 const init = async () => {
 
@@ -20,6 +20,7 @@ const init = async () => {
     server.ext('onRequest', requestLogging);
 
     server.route(healthController.healthEndpoint);
+    server.route(healthController.indexEndpoint);
 
     server.route(ratesController.getRates);
     server.route(ratesController.createRates);

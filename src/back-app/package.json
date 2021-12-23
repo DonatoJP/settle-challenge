@@ -10,6 +10,11 @@
     "joi": "^17.5.0",
     "migrate-mongo": "^8.2.3",
     "mongoose": "^6.1.2",
+    "nodemon": "^2.0.15",
     "winston": "^3.3.3"
+  },
+  "scripts": {
+    "start-dev": "nodemon index.js",
+    "start-prod": "node index.js"
   }
 }

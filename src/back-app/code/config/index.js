@@ -7,7 +7,8 @@ const config = {
         host: process.env.DB_HOST,
         port: process.env.DB_PORT,
         username: process.env.DB_USERNAME,
-        password: process.env.DB_PASSWORD
+        password: process.env.DB_PASSWORD,
+        dbName: process.env.DB_NAME
     },
     fixerConfig: {
         url: process.env.FIXER_URL,
