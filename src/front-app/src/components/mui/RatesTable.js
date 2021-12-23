@@ -48,6 +48,7 @@ export default function CustomizedTables(props) {
                         {d.from.symbol}
                     </StyledTableCell>
                     <StyledTableCell align="right">{d.to.symbol}</StyledTableCell>
+                    <StyledTableCell align="right">{d.originalRate}</StyledTableCell>
                     <StyledTableCell align="right">{d.feePercentage}</StyledTableCell>
                     <StyledTableCell align="right">{d.feeAmount}</StyledTableCell>
                     <StyledTableCell align="right">{d.totalRate}</StyledTableCell>
@@ -73,6 +74,7 @@ export default function CustomizedTables(props) {
           <TableRow>
             <StyledTableCell>From</StyledTableCell>
             <StyledTableCell align="right">To</StyledTableCell>
+            <StyledTableCell align="right">Original Rate</StyledTableCell>
             <StyledTableCell align="right">Fee %</StyledTableCell>
             <StyledTableCell align="right">Fee Amount</StyledTableCell>
             <StyledTableCell align="right">Total</StyledTableCell>
