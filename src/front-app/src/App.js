@@ -13,14 +13,15 @@ function App() {
     setHasData(false)
   }
 
-  React.useEffect(async () => {
+  React.useEffect(() => {
     if (hasData) {
       return
     }
 
-    const dataFromBack = await backendService.getRates()
-    setData(dataFromBack)
-    setHasData(true)
+    backendService.getRates().then((dataFromBack) => {
+      setData(dataFromBack)
+      setHasData(true)
+    })
   }, [hasData])
 
   return (

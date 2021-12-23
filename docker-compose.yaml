@@ -6,8 +6,9 @@ services:
       context: ./src/back-app
       dockerfile: Dockerfile
     volumes:
-      - ./src/back-app/code:/usr/app/code
-      - ./src/back-app/index.js:/usr/app/index.js
+      - "./src/back-app/code:/usr/app/code"
+      - "./src/back-app/index.js:/usr/app/index.js"
+    entrypoint: ["./bin/wait-for-service.sh", "db:27017"]
     ports:
       - 3000:3000
   
@@ -17,6 +18,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./src/front-app/src:/usr/app/src
+    entrypoint: ["./bin/wait-for-service.sh", "app:3000"]
     ports:
       - 3001:3000
     
