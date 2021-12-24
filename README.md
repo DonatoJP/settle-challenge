@@ -42,7 +42,7 @@ docker-compose -p "settle-challenge" logs -f
 docker-compose -p "settle-challenge" down
 ```
 
-Additional, if you decide to go this way, you may want to validate the `.env` file (`src/back-app/.env`) to configure environment variables while the back-end application is running. Examples for both environments (`production` and `dev`) files are in `src/back-app/.env.dev` and `src/back-app/.env.prod`.
+Additionally, if you decide to go this way, you may want to validate the `.env` file (`src/back-app/.env`) to configure environment variables while the back-end application is running. Examples for both environments (`production` and `dev`) files are in `src/back-app/.env.dev` and `src/back-app/.env.prod`.
 
 
 ## Technological Stack
@@ -62,7 +62,7 @@ This environment includes:
 - A backend application, running with `nodemon` for hot-reloading on port 3000 (http://localhost:3000)
 - A `dev` database in MongoDB
 
-The backend application on dev mode does not communicates with FixerIO to retrieve data from it. Instead, it loads a Mock component that uses data saved on its filesystem to answer client's requests. To make it a little bit more real, it returns rates with a difference of +/- 10% from the original.
+The backend application on dev mode does not communicates with FixerIO to retrieve data from it. Instead, it loads a Mock component that uses data saved on its filesystem to answer client's requests. To make it a little bit more real, it returns rates with a difference of +/- 10% from the original. Reloading any rate multiple times will result in a constant change of the "Original Fee" value.
 
 ## Production Environment
 
@@ -72,4 +72,4 @@ This environment includes:
 - A backend application, running on port 3000 (http://localhost:3000)
 - A `db` database in MongoDB
 
-The backend application is fully connected with FixerIO.
+The backend application is fully connected with FixerIO. Trying to reload any rate with the reload button will trigger a new request to Fixer.IO to re-calculate the FX rate.
