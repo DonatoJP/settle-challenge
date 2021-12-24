@@ -12,7 +12,6 @@ const buttonTheme = {
     }
 }
 
-
 export default function NewRateButton (props) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);

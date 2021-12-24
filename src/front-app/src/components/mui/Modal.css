@@ -35,6 +35,21 @@
     flex-direction: row;
 }
 
+.action-box {
+    display: flex;
+    flex-direction: row;
+    float: right;
+}
+
+.action-box-field {
+    width: 45%;
+    font-family: arial;
+    padding: 5px 10px 10px 10px;
+    border-radius: 10px;
+    display: inline-block;
+    text-align: center;
+}
+
 .flex-container {
     display: flex;
 }

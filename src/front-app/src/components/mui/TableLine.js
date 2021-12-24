@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import TableRow from '@mui/material/TableRow';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import RefreshButton from "./RefreshRateButton";
+import UpdateRateButton from "./UpdateRateButton";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -55,7 +56,14 @@ export default function TableLine(props) {
             <StyledTableCell align="right">{data.feeAmount}</StyledTableCell>
             <StyledTableCell align="right">{data.totalRate}</StyledTableCell>
             <StyledTableCell align="right">
-                <RefreshButton rateId={data.id} handleRefresh={handleRefresh} />
+                <div className='action-box'>
+                  <div className='action-box-field'>
+                    <UpdateRateButton rateId={data.id} handleRefresh={handleRefresh} />
+                  </div>
+                  <div className='action-box-field'>
+                    <RefreshButton rateId={data.id} handleRefresh={handleRefresh} />
+                  </div>
+                </div>
             </StyledTableCell>
         </StyledTableRow>
     )

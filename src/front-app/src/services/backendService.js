@@ -72,12 +72,26 @@ const refreshRate = async (rateId) => {
 
 }
 
+const updateRateFeePercentage = async (rateId, feePercentage) => {
+    const data = { feePercentage }
+    return axiosClient
+        .put(`http://localhost:3000/rates/${rateId}`, JSON.stringify(data), { headers })
+        .then(response => {
+            if (response.status === 200) {
+                return { success: true, data: JSON.parse(response.data) }
+            }
+
+            return { success: false, message: JSON.parse(response.data).message }
+        })
+}
+
 const availableMethods = {
     getRates,
     getOriginalRateBetween,
     getAvailableCurrencies,
     createRate,
-    refreshRate
+    refreshRate,
+    updateRateFeePercentage
 }
 
 export default availableMethods;

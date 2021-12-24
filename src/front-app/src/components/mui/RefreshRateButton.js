@@ -1,13 +1,13 @@
 import React from "react";
 import { Button } from "@mui/material";
 import '../../Button.css';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import backendService from '../../services/backendService';
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 const buttonTheme = {
-    backgroundColor: '#9d2525',
+    backgroundColor: '#b5710b96',
     '&:hover': {
-        backgroundColor: '#480606'
+        backgroundColor: '#7a572396'
     }
 }
 
@@ -16,7 +16,6 @@ export default function RefreshButton ({ rateId, handleRefresh }) {
     // const [open, setOpen] = React.useState(false);
     const handleClick = () => {
         backendService.refreshRate(rateId).then(result => {
-            console.log(result)
             if (result.success) {
                 handleRefresh(result.data)
             }
@@ -30,7 +29,7 @@ export default function RefreshButton ({ rateId, handleRefresh }) {
                     variant="contained" 
                     sx={buttonTheme}
                     onClick={handleClick}
-                > <AttachMoneyIcon/>
+                > <RefreshIcon/>
                 </Button>
             </div>
         </div>

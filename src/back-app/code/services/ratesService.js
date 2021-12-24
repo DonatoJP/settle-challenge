@@ -48,9 +48,23 @@ const refreshRate = async (rateId) => {
     )
 }
 
+const updateRate = async (rateId, newData) => {
+    return Rate.findByIdAndUpdate(rateId, newData, { new: true })
+        .then(rate => {
+            if (!rate) {
+                throw new RateNotFound(`Rate with ID ${rateId} does not exist`)
+            }
+
+            rate.feeAmount = (rate.feePercentage / 100) * rate.originalRate
+            rate.totalRate = rate.feeAmount + rate.originalRate
+            return rate.save()
+        })
+}
+
 module.exports = {
     getRates,
     newRate,
     getOriginalRateBetween,
-    refreshRate
+    refreshRate,
+    updateRate
 }

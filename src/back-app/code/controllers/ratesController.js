@@ -15,6 +15,18 @@ const ratesSchema = Joi.alternatives().try(
     })
 )
 
+const updateRatesSchema = Joi.object().required().keys({
+    from: Joi.object().keys({
+        symbol: Joi.string().alphanum().min(3).max(3),
+        description: Joi.string().alphanum()
+    }),
+    to: Joi.object().keys({
+        symbol: Joi.string().alphanum().min(3).max(3),
+        description: Joi.string().alphanum()
+    }),
+    feePercentage: Joi.number().min(0.0),
+})
+
 const originalRatesSchema = Joi.object().required().keys({
     from: Joi.string().required(),
     to: Joi.string().required()
@@ -85,9 +97,31 @@ const refreshRates = {
     }
 }
 
+const updateRates = {
+    method: 'PUT',
+    path: '/rates/{rateId}',
+    handler: async (request, h) => {
+        return ratesService
+            .updateRate(request.params.rateId, request.payload)
+            .catch(err => {
+                if (err instanceof RateNotFound) {
+                    return h.response({error: true, message: err.message}).code(404)
+                }
+
+                return h.response({error: true, message: err.message}).code(500)
+            })
+    },
+    options: {
+        validate: {
+            payload: updateRatesSchema
+        }
+    }
+}
+
 module.exports = {
     getRates,
     createRates,
     getOriginalRatesBetween,
-    refreshRates
+    refreshRates,
+    updateRates
 }
